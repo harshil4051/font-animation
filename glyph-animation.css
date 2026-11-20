@@ -1,0 +1,44 @@
+/* ==========================================================================
+   Glyph Static Font Animation for Webflow
+   Paste this into Webflow: Project Settings → Custom Code → Head Code
+   (or Page Settings → Custom Code → Inside <head> tag)
+   ========================================================================== */
+
+/* Root Container */
+[data-text-glyph] .gs-root,
+[data-glyph-static] .gs-root,
+.gs-root {
+  display: inline;
+}
+
+/* Word wrapper - keeps individual words intact so letters never break mid-word */
+[data-text-glyph] .gs-w,
+[data-glyph-static] .gs-w,
+.gs-w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Character Box - locked to the real character width before any substitute is shown */
+[data-text-glyph] .gs-c,
+[data-glyph-static] .gs-c,
+.gs-c {
+  display: inline-block;
+  text-align: center;
+}
+
+/* Live scrambling character - supports optional accent color */
+[data-text-glyph] .gs-c[data-gs-live],
+[data-glyph-static] .gs-c[data-gs-live],
+.gs-c[data-gs-live] {
+  color: var(--gs-accent, inherit);
+}
+
+/* Accessibility: Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-text-glyph] .gs-c,
+  [data-glyph-static] .gs-c,
+  .gs-c {
+    color: inherit !important;
+  }
+}

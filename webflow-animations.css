@@ -1,0 +1,163 @@
+/* ==========================================================================
+   WEBFLOW TEXT ANIMATIONS — CSS
+   Paste into Webflow: Project Settings → Custom Code → Head Code
+   (or Page Settings → Custom Code → Inside <head> tag)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. SLIDE UP CHARACTERS ANIMATION
+   Trigger Attribute: [data-slide-up="characters"] (or "words" / "lines")
+   ========================================================================== */
+
+/* Accessible text for screen readers */
+[data-slide-up] .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Word wrapper: keeps words intact, overflow visible prevents clipping */
+[data-slide-up] .slide-word {
+  display: inline-flex;
+  overflow: visible;
+  vertical-align: top;
+}
+
+/* Character box: clipping mask for the slide-up animation.
+   padding/margin prevents outer curved terminals (like 's') from being cut off */
+[data-slide-up] .slide-char {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  white-space: pre-wrap;
+  padding: 0 0.08em;
+  margin: 0 -0.08em;
+}
+
+/* Character inner: slides up from translateY(100%) to 0 */
+[data-slide-up] .slide-char-inner {
+  display: inline-block;
+  transform: translateY(100%);
+  will-change: transform;
+}
+
+[data-slide-up] .slide-char-inner.is-visible {
+  animation-name: hs-slide-up;
+  animation-timing-function: cubic-bezier(0.625, 0.05, 0, 1);
+  animation-fill-mode: both;
+}
+
+@keyframes hs-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+
+/* ==========================================================================
+   2. TEXT ROLL (3D LETTER FLIP) ANIMATION
+   Trigger Attribute: [data-text-roll="true"]
+   ========================================================================== */
+
+[data-text-roll] .text-roll {
+  display: inline;
+  white-space: normal;
+}
+
+/* Keeps words from breaking characters across lines */
+[data-text-roll] .text-roll__word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Character mask box */
+[data-text-roll] .text-roll__mask {
+  display: inline-block;
+  overflow: hidden;
+  height: 1.15em;
+  vertical-align: top;
+  line-height: 1.15;
+  padding: 0 0.06em;
+  margin: 0 -0.06em;
+}
+
+/* Rolling character container */
+[data-text-roll] .text-roll__char {
+  display: block;
+  white-space: pre;
+  will-change: transform;
+}
+
+/* Character faces (enter and exit) */
+[data-text-roll] .text-roll__face {
+  display: block;
+  height: 1.15em;
+  line-height: 1.15;
+}
+
+/* Animation trigger on scroll */
+[data-text-roll] .text-roll.is-playing .text-roll__char {
+  animation: hs-text-roll-up 500ms cubic-bezier(0.625, 0.05, 0, 1) both;
+  animation-delay: var(--enter-delay, 0ms);
+}
+
+/* Space between words */
+[data-text-roll] .text-roll__space {
+  display: inline;
+  white-space: pre-wrap;
+}
+
+@keyframes hs-text-roll-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+
+/* ==========================================================================
+   3. TEXT BLUR FADE ANIMATION
+   Trigger Attribute: [data-text-blur="true"]
+   ========================================================================== */
+
+[data-text-blur] [data-delay] {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(12px);
+}
+
+[data-text-blur] [data-delay].is-in {
+  animation: hs-text-blur-in 0.9s ease forwards;
+}
+
+@keyframes hs-text-blur-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+
+/* ==========================================================================
+   ACCESSIBILITY: REDUCED MOTION PREFERENCES
+   Disables motion for users with prefers-reduced-motion active
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slide-up] .slide-char-inner {
+    transform: none;
+    animation: none;
+  }
+  [data-text-roll] .text-roll.is-playing .text-roll__char {
+    animation: none;
+    transform: translateY(-50%);
+  }
+  [data-text-blur] [data-delay] {
+    opacity: 1;
+    filter: none;
+    animation: none;
+  }
+}

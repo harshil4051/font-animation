@@ -1,0 +1,56 @@
+/* ==========================================================================
+   Shutter Type Font Animation for Webflow
+   Paste this into Webflow: Project Settings → Custom Code → Head Code
+   (or Page Settings → Custom Code → Inside <head> tag)
+   ========================================================================== */
+
+/* Shutter Root Container */
+[data-text-shutter] .st-root,
+[data-shutter-type] .st-root,
+.st-root {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+}
+
+/* Word wrapper - keeps individual words intact */
+[data-text-shutter] .st-w,
+[data-shutter-type] .st-w,
+.st-w {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Character Box - clipping container for the shutter effect.
+   The padding-block opens the clipping region so descenders (g, j, p, q, y)
+   are never clipped, and margin-block offsets it so the layout box is preserved. */
+[data-text-shutter] .st-c,
+[data-shutter-type] .st-c,
+.st-c {
+  display: inline-block;
+  overflow: hidden;
+  padding-block: 0.26em 0.3em;
+  margin-block: -0.26em -0.3em;
+  padding-inline: 0.08em;
+  margin-inline: -0.08em;
+  vertical-align: baseline;
+}
+
+/* Character Glyph - the letter that slides in from under the clipping edge */
+[data-text-shutter] .st-g,
+[data-shutter-type] .st-g,
+.st-g {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* Accessibility: Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  [data-text-shutter] .st-g,
+  [data-shutter-type] .st-g,
+  .st-g {
+    will-change: auto;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

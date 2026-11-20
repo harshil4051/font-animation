@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typography Animations — Webflow Ready</title>
+
+  <!-- Global Base Styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Animation 1, 2, 3 CSS: Slide Up, Text Roll, Text Blur -->
+  <link rel="stylesheet" href="webflow-animations.css" />
+
+  <!-- Animation 4 CSS: Shutter Type -->
+  <link rel="stylesheet" href="shutter-animation.css" />
+
+  <!-- Animation 5 CSS: Glyph Static (Decode / Scramble) -->
+  <link rel="stylesheet" href="glyph-animation.css" />
+</head>
+<body>
+
+  <!-- =========================================================================
+       1. SLIDE UP CHARACTERS ANIMATION
+       Trigger Attribute : data-slide-up="characters" (or "words" / "lines")
+       Optional Settings : data-slide-stagger="0.03", data-slide-duration="0.5", data-slide-delay="0"
+       Required Files    : webflow-animations.css (Section 1) + webflow-animations.js (initSlideUp)
+       ========================================================================= -->
+  <section class="demo">
+    <span class="eyebrow">Slide Up Characters Animation</span>
+    <h1 data-slide-up="characters">Welcome to Ahmedabad The Soul of Gujarat</h1>
+  </section>
+
+
+  <!-- =========================================================================
+       2. TEXT ROLL (3D LETTER FLIP) ANIMATION
+       Trigger Attribute : data-text-roll="true"
+       Optional Settings : data-roll-stagger="40" (milliseconds per character)
+       Required Files    : webflow-animations.css (Section 2) + webflow-animations.js (initTextRoll)
+       ========================================================================= -->
+  <section class="hero">
+    <span class="eyebrow">Text Roll Animation</span>
+    <h2 data-text-roll="true">Welcome to Ahmedabad The Soul of Gujarat</h2>
+  </section>
+
+
+  <!-- =========================================================================
+       3. TEXT BLUR FADE ANIMATION
+       Trigger Attribute : data-text-blur="true"
+       Optional Settings : data-delay="0.30" (delay in seconds)
+       Required Files    : webflow-animations.css (Section 3) + webflow-animations.js (initTextBlur)
+       ========================================================================= -->
+  <section class="blur-section">
+    <span class="eyebrow">Text Blur Fade Animation</span>
+    <h2 data-text-blur="true">Welcome to Ahmedabad The Soul of Gujarat</h2>
+  </section>
+
+
+  <!-- =========================================================================
+       4. SHUTTER TYPE (MASK CLIP) ANIMATION
+       Trigger Attribute : data-text-shutter="true"
+       Optional Settings : data-shutter-duration="900", data-shutter-settle="520", data-shutter-from="below"
+       Required Files    : shutter-animation.css + shutter-animation.js
+       ========================================================================= -->
+  <section class="shutter-section">
+    <span class="eyebrow">Shutter Type Animation</span>
+    <h2 data-text-shutter="true">Welcome to Ahmedabad The Soul of Gujarat</h2>
+  </section>
+
+
+  <!-- =========================================================================
+       5. GLYPH STATIC (DECODE / SCRAMBLE) ANIMATION
+       Trigger Attribute : data-text-glyph="true"
+       Optional Settings : data-glyph-duration="1100", data-glyph-settle="380", data-glyph-fps="22"
+       Required Files    : glyph-animation.css + glyph-animation.js
+       ========================================================================= -->
+  <section class="glyph-section">
+    <span class="eyebrow">Glyph Static (Decode / Scramble) Animation</span>
+    <h2 data-text-glyph="true">Welcome to Ahmedabad The Soul of Gujarat</h2>
+  </section>
+
+
+  <!-- =========================================================================
+       SCRIPTS (Footer Code)
+       ========================================================================= -->
+  <!-- Animations 1, 2, 3: Slide Up, Text Roll, Text Blur -->
+  <script src="webflow-animations.js"></script>
+
+  <!-- Animation 4: Shutter Type -->
+  <script src="shutter-animation.js"></script>
+
+  <!-- Animation 5: Glyph Static -->
+  <script src="glyph-animation.js"></script>
+
+</body>
+</html>
